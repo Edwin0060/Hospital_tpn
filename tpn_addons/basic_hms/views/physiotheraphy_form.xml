@@ -1,0 +1,93 @@
+<odoo>
+    <record id="view_physiotheraphy_form_form" model="ir.ui.view">
+        <field name="name">patient.physiotheraphy.form</field>
+        <field name="model">patient.physiotheraphy</field>
+        <field name="arch" type="xml">
+            <form string="Patient Physiotheraphy Form">
+                <sheet>
+                    <group>
+                        <group string="Patient Information ">
+                            <field name="name" readonly="1"/>
+                            <field name="patient_age" readonly="1"/>
+                            <field name="patient_dob" readonly="1"/>
+                            <field name="patient_gender" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="in_patient" readonly="1"/>
+                            <field name="ward"/>
+                            <field name="room_no" required="1"/>
+                            <field name="surgery_date"/>
+                            <field name="treatment_plan"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Patient Physiotherapy">
+                            <seperator string="Patient Physiotherapy"/>
+                            <field name="patient_physiotheraphy_line_ids" nolabel="0" widget="section_and_note_one2many"
+                                   mode="tree,kanban">
+                                <tree editable="bottom" create="0">
+                                    <!--                                    <control>-->
+                                    <!--                                        <create name="add_line_control" string="Add a line"/>-->
+                                    <!--                                        <create name="add_section_control" string="Add a section"-->
+                                    <!--                                                context="{'default_display_type': 'line_section'}"/>-->
+
+                                    <!--                                    </control>-->
+
+                                    <field name="display_type" force_save="1" invisible="1" readonly="1"/>
+
+                                    <field name="date" force_save="1" decoration-info="date" decoration-bf="date"
+                                           readonly="1"/>
+                                    <field name="mrg_eve" force_save="1" readonly="1"/>
+                                    <field name="physiotheraphy" force_save="1"
+                                           attrs="{'readonly': [('boolean_name', '=', True)]}"/>
+                                    <field name="remark" force_save="1"
+                                           attrs="{'readonly': [('boolean_name', '=', True)]}"/>
+                                    <field name="signature" attrs="{'readonly': [('boolean_name', '=', True)]}"/>
+                                    <field name="boolean_name" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Other Info">
+                            <group>
+                                <field name="diagonsis"/>
+                                <field name="surgery_procedure"/>
+                                <field name="out_come"/>
+                                <field name="discharge_advice"/>
+                                <field name="observation"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_physiotheraphy_form_tree" model="ir.ui.view">
+        <field name="name">patient.physiotheraphy.tree</field>
+        <field name="model">patient.physiotheraphy</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="in_patient"/>
+                <field name="patient_age"/>
+                <field name="ward"/>
+                <field name="room_no"/>
+                <field name="surgery_date"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_physiotheraphy_action" model="ir.actions.act_window">
+        <field name="name">Patient Physiotheraphy</field>
+        <field name="res_model">patient.physiotheraphy</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_physiotherapy_form" action="view_physiotheraphy_action"
+              parent="main_menu_patient_reporting" sequence="2"/>
+
+
+</odoo>

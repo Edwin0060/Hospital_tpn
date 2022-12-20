@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="paperformat_physiotheraphy_assessment_report" model="report.paperformat">
+            <field name="name">Physiotheraphy Assessment Report</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">40</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report
+                id="action_physiotheraphy_assessment_report"
+                model="patient.physiotheraphy"
+                string="Physiotheraphy Assessment Report"
+                report_type="qweb-pdf"
+                name="basic_hms.physiotheraphy_assessment_report_template"
+                file="basic_hms.physiotheraphy_assessment_report_template"
+                paperformat="basic_hms.paperformat_physiotheraphy_assessment_report"
+                print_report_name='"Physiotheraphy Assessment Report"'
+                menu="True"
+        />
+
+        <template id="physiotheraphy_assessment_report_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="rec">
+                    <t t-call="web.basic_layout">
+                        <t t-foreach="docs" t-as="o">
+                            <div class="header">
+                                <div class="row">
+                                    <div align="left">
+                                        <img src='/web/binary/company_logo' class="img-fluid img-thumbnail"
+                                             style="height:60pt;width:100pt;"/>
+                                    </div>
+                                    <div align="center" class="px-3">
+                                        <strong style="font-size: 25px" t-esc="res_company.name"/>
+                                        <br/>
+                                        <strong style="font-size: 17px" t-esc="res_company.street"/>
+                                        <strong style="font-size: 17px" t-esc="res_company.street2"/>
+                                        <br/>
+                                        <strong style="font-size: 17px" t-esc="res_company.city"/>
+                                        <strong style="font-size: 17px" t-esc="res_company.state_id.name"/>
+                                        <strong style="font-size: 17px" t-esc="res_company.country_id.name"/>
+                                        <strong style="font-size: 17px" t-esc="res_company.phone"/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <hr style="color:blue; border-top:2px solid black; margin-top:1px"/>
+
+                            </div>
+                            <div class="text-center">
+                                <strong>
+                                    <u>
+                                        <h3>PHYSIOTHERAPHY ASSESSMENT REPORT</h3>
+                                    </u>
+                                </strong>
+                            </div>
+                            <br/>
+                            <div class="left">
+                                <h5>PATIENT INFORMATION</h5>
+                            </div>
+                            <br/>
+                            <div class="left">
+                                <strong class="px-1">Name</strong>
+                                <strong class="px-2">:</strong>
+                                <span t-esc="o.name"></span>
+                                <strong class="px-1">Age</strong>
+                                <strong class="px-2">:</strong>
+                                <span t-esc="o.patient_age"></span>
+                                <strong class="px-1">Gender</strong>
+                                <strong class="px-2">:</strong>
+                                <span t-esc="o.patient_gender"></span>
+                                <strong class="px-1">I.P.No</strong>
+                                <strong class="px-2">:</strong>
+                                <span t-esc="o.in_patient"></span>
+                            </div>
+                            <br/>
+                            <div class="left">
+                                <strong class="px-1">DOB</strong>
+                                <strong class="px-2">:</strong>
+                                <span t-esc="o.patient_dob"></span>
+                                <strong class="px-1">Ward</strong>
+                                <strong class="px-2">:</strong>
+                                <span t-esc="o.ward"></span>
+                                <strong class="px-1">Room No</strong>
+                                <strong class="px-2">:</strong>
+                                <span t-esc="o.room_no"></span>
+                                <strong class="px-1">Surgery Date :</strong>
+                                <strong class="px-2">:</strong>
+                                <span t-esc="o.surgery_date"></span>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="left">
+                                <strong class="px-2">Diagonsis</strong>
+                                <strong class="px-1">:</strong>
+                                <span t-esc="o.diagonsis"></span>
+
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="left">
+                                <strong class="px-2">Surgery Procedure</strong>
+                                <strong class="px-1">:</strong>
+                                <span t-esc="o.surgery_procedure"></span>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="left">
+                                <strong class="px-2">Treatment Plan</strong>
+                                <strong class="px-1">:</strong>
+                                <span t-esc="o.treatment_plan"></span>
+                            </div>
+                            <br/>
+                            <br/>
+                            <table class="table table-sm table-bordered"
+                                   style="border:1px solid black;font-size:14px;border-radius:2pt;">
+                                <thead style="border:1px solid black">
+                                    <tr style="border:1px solid black;font-size:15px">
+                                        <th width="7%" class="text-center" style="border:1px solid black">
+                                            <strong>DATE</strong>
+                                        </th>
+                                        <th width="3%" class="text-center" style="border:1px solid black">
+                                            <strong></strong>
+                                        </th>
+                                        <th width="10%" class="text-center" style="border:1px solid black">
+                                            <strong>PHYSIOTHERAPHY</strong>
+                                        </th>
+                                        <th width="10%" class="text-center" style="border:1px solid black">
+                                            <strong>REMARKS</strong>
+                                        </th>
+                                        <th width="10%" class="text-center" style="border:1px solid black">
+                                            <strong>SIGNATURE</strong>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <body>
+                                    <t t-foreach="o.patient_physiotheraphy_line_ids" t-as="l">
+                                        <tr style="border:1px solid black">
+                                            <t t-if="l.date">
+                                                <td colspan="5" class="text-left text-dark  text-dark"
+                                                    style="font-weight:bold;font-size:17px;background-color: #CDCDCD;border:1px solid black">
+                                                    <span t-field="l.date"/>
+                                                </td>
+                                            </t>
+                                            <t t-else="">
+                                                <td style="width:25px;border:1px solid black">
+                                                </td>
+                                                <td style="width:25px; height:25px;border:1px solid black">
+                                                    <span t-field="l.mrg_eve"/>
+                                                </td>
+                                                <td style="width:25px; height:25px;border:1px solid black">
+                                                    <span t-field="l.physiotheraphy"/>
+                                                </td>
+                                                <td style="width:25px; height:25px;border:1px solid black">
+                                                    <span t-field="l.remark"/>
+                                                </td>
+                                                <td style="width:25px; height:25px;border:1px solid black">
+                                                    <span t-field="l.signature"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </t>
+                                </body>
+                            </table>
+                            <div style="page-break-before:always;">
+                                <strong>
+                                    <u>Physiotherapy Out Come :</u>
+                                </strong>
+                                <span t-field="o.out_come"/>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div style="margin-right:10px;">
+                                <strong>
+                                    <u>Discharge Advice:</u>
+                                </strong>
+                                <span t-field="o.discharge_advice"/>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div class="row">
+                                <div class="col-7">
+                                    <strong>
+                                        Medical Observation:
+                                    </strong>
+                                    <span t-field="o.observation"/>
+                                </div>
+                                <div class="col-4">
+                                    <strong>
+                                        Therapist Name and Signature:
+                                    </strong>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

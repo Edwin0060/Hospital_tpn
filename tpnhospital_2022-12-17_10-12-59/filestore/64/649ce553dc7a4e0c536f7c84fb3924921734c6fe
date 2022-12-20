@@ -1,0 +1,3 @@
+
+/* /web/static/src/core/ui/block_ui.scss defined in bundle 'point_of_sale.pos_assets_backend_style' */
+ .o_blockUI{position: fixed; top: 0; left: 0; z-index: 1100; cursor: wait; background: #000000; opacity: 0.6; height: 100vh; width: 100vw; display: -webkit-box; display: -webkit-flex; display: flex; justify-content: center; align-items: center; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; flex-direction: column;}.o_blockUI .o_spinner{height: 4.2rem; margin-bottom: 1rem;}.o_blockUI .o_spinner img{animation: fa-spin 1s infinite steps(12);}.o_blockUI .o_message{color: #ffffff; text-align: center;}
